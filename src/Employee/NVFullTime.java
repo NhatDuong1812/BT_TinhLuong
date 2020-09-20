@@ -1,5 +1,6 @@
 package Employee;
 
+import javax.jws.WebService;
 import java.util.Scanner;
 
 public class NVFullTime extends NhanVien {

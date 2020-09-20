@@ -38,17 +38,19 @@ public class Methodss {
         } while (true);
     }
 
-    public double TotalSalaryForPartTime(){
-        double total = 0 ;
-
-        for (NhanVien nhanVien : nhanViens) {
-            NVPartTime nvPT = (NVPartTime) nhanVien;
-            //nvPT.ggetSalary();
-            total += nvPT.ggetSalary();
+    public double TotalSalaryForPartTime()
+    {
+        double total = 0;
+        for (NhanVien nhanVien : nhanViens)
+        {
+            if (nhanVien instanceof NVPartTime)
+            {
+                NVPartTime nvPT = (NVPartTime) nhanVien;
+                total += nvPT.ggetSalary();
+            }
         }
         return total;
-
-
-
     }
+
+
 }
