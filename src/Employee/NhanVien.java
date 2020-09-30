@@ -1,6 +1,8 @@
 package Employee;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NhanVien {
     public int id;
@@ -9,6 +11,10 @@ public class NhanVien {
     public String sdt;
     public String email;
     public double salary;
+    private static Pattern pattern;
+    private static Matcher matcher;
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
+    private static final String PHONE_REGEX = "^(0|84)?[0-9]{9}$";
 
     public NhanVien(){}
 
@@ -61,18 +67,31 @@ public class NhanVien {
         this.email = email;
     }
 
-    public double getSalary() {
-        return salary;
-        }
+//    public double getSalary() {
+//        return salary;
+//        }
 
     public void setSalary(double salary) {
         this.salary = salary;
     }
 
 
-    public double ggetSalary() {
-        return 0.0;
+    public double getSalary() {
+        return salary;
     }
+
+    public static boolean validEmail(String regex) {
+        pattern = Pattern.compile(EMAIL_REGEX);
+        matcher = pattern.matcher(regex);
+        return matcher.matches();
+    }
+
+    public static boolean validPhone(String regex) {
+        pattern = Pattern.compile(PHONE_REGEX);
+        matcher = pattern.matcher(regex);
+        return matcher.matches();
+    }
+
 
     public void addInfo() {
         Scanner sc = new Scanner(System.in);
@@ -82,9 +101,23 @@ public class NhanVien {
         name = sc.nextLine();
         System.out.println("Enter age: ");
         age = Integer.parseInt(sc.nextLine());
-        System.out.println("Enter phone number: ");
-        sdt = sc.nextLine();
-        System.out.println("Enter email: ");
-        email = sc.nextLine();
+        do {
+            System.out.print("Phone number: ");
+            sdt = sc.nextLine();
+            if (!validPhone(sdt)) {
+                System.out.println("!!!!Phone number unavailable. please re-enter.");
+            }
+        } while (!validPhone(sdt));
+        do {
+            System.out.print("Email: ");
+            email = sc.nextLine();
+            if (!validEmail(email)) {
+                System.out.println("!!!!Email unavailable. please re-enter. ");
+            }
+        } while (!validEmail(email));
+//        System.out.println("Enter phone number: ");
+//        sdt = sc.nextLine();
+//        System.out.println("Enter email: ");
+//        email = sc.nextLine();
     }
 }

@@ -1,12 +1,14 @@
-package Employee;
+package Methods;
+import Employee.NVFullTime;
+import Employee.NVPartTime;
+import Employee.NhanVien;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Methodss {
+public class Methods {
     static List<NhanVien> nhanViens = new ArrayList<>();
 
     public void show() {
@@ -46,11 +48,37 @@ public class Methodss {
             if (nhanVien instanceof NVPartTime)
             {
                 NVPartTime nvPT = (NVPartTime) nhanVien;
-                total += nvPT.ggetSalary();
+                total += nvPT.getSalary();
             }
         }
         return total;
     }
 
+    public void delete(String nameDelete){
+        for (NhanVien nhanvien: nhanViens
+             ) {
+            if (nameDelete.equals(nhanvien.getName()) && nhanvien instanceof  NVFullTime || nhanvien instanceof NVPartTime){
+                nhanViens.remove(nhanvien);
+                break;
+            }
+        }
+    }
+
+    public void writeFile() throws IOException {
+        FileWriter writer = new FileWriter("Text");
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        bufferedWriter.write(nhanViens.toString());
+        bufferedWriter.close();
+    }
+
+    public void readFile() throws IOException{
+        FileReader frr = new FileReader("Text");
+        BufferedReader br = new BufferedReader(frr);
+        String text;
+        while ((text = br.readLine()) != null){
+            System.out.println(text);
+        }
+        br.close();
+    }
 
 }

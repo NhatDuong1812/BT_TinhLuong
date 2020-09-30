@@ -1,6 +1,6 @@
 package Employee;
 
-import javax.jws.WebService;
+
 import java.util.Scanner;
 
 public class NVFullTime extends NhanVien {
@@ -52,7 +52,7 @@ public class NVFullTime extends NhanVien {
     }
 
     @Override
-    public double ggetSalary() {
+    public double getSalary() {
         double salary = fixedSalary + (bonus - fines);
         return salary;
     }
@@ -67,7 +67,8 @@ public class NVFullTime extends NhanVien {
                 ", Bonus=" + bonus +
                 ", Fines=" + fines +
                 ", FixedSalary=" + fixedSalary +
-                ", Salary=" + ggetSalary() +
-                '}';
+                ", Salary=" + getSalary() +
+                '}' + "\n";
     }
+
 }

@@ -34,7 +34,7 @@ public class NVPartTime extends NhanVien {
     }
 
     @Override
-    public double ggetSalary() {
+    public double getSalary() {
         double salary = 100000 * hour;
         return salary;
     }
@@ -47,7 +47,7 @@ public class NVPartTime extends NhanVien {
                 ", Age=" + age +
                 ", Sdt='" + sdt + '\'' +
                 ", Hour= " + hour +
-                ", Salary= " + ggetSalary() +
-                '}';
+                ", Salary= " + getSalary() +
+                '}' + "\n" ;
     }
 }
